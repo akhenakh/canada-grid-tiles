@@ -4,7 +4,10 @@ The Canadian Cartogram: A Grid-Based View of Provincial Land Area
 ## Example
 ![Population Distribution](img/population.jpg)
 
-[GDP](https://htmlpreview.github.io/?https://github.com/akhenakh/canada-grid-tiles/blob/main/html/gdp.html)
+[Canadian GDP](https://htmlpreview.github.io/?https://github.com/akhenakh/canada-grid-tiles/blob/main/html/gdp.html)  
+[Canadian Land Area](https://htmlpreview.github.io/?https://github.com/akhenakh/canada-grid-tiles/blob/main/html/land.html)  
+[Canadian Population](https://htmlpreview.github.io/?https://github.com/akhenakh/canada-grid-tiles/blob/main/html/population.html)  
+
 
 ## Detailed Explanation of the Grid Representation
 
