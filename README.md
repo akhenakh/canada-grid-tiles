@@ -1,6 +1,9 @@
 # canada-grid-tiles
 The Canadian Cartogram: A Grid-Based View of Provincial Land Area
 
+## Example
+![Population Distribution](img/population.jpg)
+
 ## Detailed Explanation of the Grid Representation
 
 This visualization offers a unique way to understand the vast and varied land areas of Canada's provinces and territories. It intentionally trades geographic accuracy for data clarity, allowing for immediate and intuitive comparisons.
