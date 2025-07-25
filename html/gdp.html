@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian GDP Grid</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 20px;
+            color: #333;
+        }
+
+        /* Container for the whole visualization */
+        .visualization-container {
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        h1 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        /* The Grid Container */
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 10px;
+            width: 80vw;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        /* Base styling for each cell */
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-height: 80px;
+            transition: transform 0.2s ease-in-out;
+            line-height: 1.3;
+        }
+        .grid-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .item-data {
+            font-size: 0.8rem;
+            font-weight: normal;
+            font-family: Arial, sans-serif;
+            margin-top: 4px;
+            opacity: 0.9;
+        }
+
+        /* 
+         * --- GRID PLACEMENT RULES ---
+         * These remain the same to keep the correct layout.
+         */
+        .item-yt { grid-area: 1 / 1; }
+        .item-nt { grid-area: 1 / 2; }
+        .item-nu { grid-area: 1 / 4; }
+        .item-nl { grid-area: 1 / 8; }
+        
+        .item-bc { grid-area: 2 / 1; }
+        .item-ab { grid-area: 2 / 2; }
+        .item-sk { grid-area: 2 / 3; }
+        .item-mb { grid-area: 2 / 4; }
+        .item-on { grid-area: 2 / 5; }
+        .item-qc { grid-area: 2 / 6; }
+        .item-nb { grid-area: 2 / 7; }
+        .item-pe { grid-area: 2 / 8; }
+        
+        .item-ns { grid-area: 3 / 8; }
+
+        /* 
+         * --- GDP COLOR TIERS (in Million CAD) ---
+         * Darker purple for higher GDP. Text color is adjusted for readability.
+         */
+
+        /* Tier 1: > $1 Trillion (Ontario) */
+        .gdp-tier-1 { background-color: #4A148C; color: #ffffff; }
+        
+        /* Tier 2: $400B - $600B (QC, AB, BC) */
+        .gdp-tier-2 { background-color: #7B1FA2; color: #ffffff; }
+
+        /* Tier 3: ~$100B (SK, MB) */
+        .gdp-tier-3 { background-color: #9C27B0; color: #ffffff; }
+
+        /* Tier 4: $30B - $60B (NS, NB, NL) */
+        .gdp-tier-4 { background-color: #BA68C8; color: #212529; }
+
+        /* Tier 5: < $10B (PEI & Territories) */
+        .gdp-tier-5 { background-color: #E1BEE7; color: #212529; }
+        
+        /* Legend styling */
+        .legend {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(0,0,0,0.2);
+            border-radius: 3px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="visualization-container">
+        <h1>Canadian GDP by Province & Territory</h1>
+        
+        <div class="map-grid">
+            <!-- Row 1 -->
+            <div class="grid-item item-yt gdp-tier-5">YT <span class="item-data">$4.3B</span></div>
+            <div class="grid-item item-nt gdp-tier-5">NT <span class="item-data">$5.5B</span></div>
+            <div class="grid-item item-nu gdp-tier-5">NU <span class="item-data">$4.8B</span></div>
+            <div class="grid-item item-nl gdp-tier-4">NL <span class="item-data">$39.0B</span></div>
+            
+            <!-- Row 2 -->
+            <div class="grid-item item-bc gdp-tier-2">BC <span class="item-data">$410B</span></div>
+            <div class="grid-item item-ab gdp-tier-2">AB <span class="item-data">$452B</span></div>
+            <div class="grid-item item-sk gdp-tier-3">SK <span class="item-data">$110B</span></div>
+            <div class="grid-item item-mb gdp-tier-3">MB <span class="item-data">$92B</span></div>
+            <div class="grid-item item-on gdp-tier-1">ON <span class="item-data">$1.1T</span></div>
+            <div class="grid-item item-qc gdp-tier-2">QC <span class="item-data">$579B</span></div>
+            <div class="grid-item item-nb gdp-tier-4">NB <span class="item-data">$47B</span></div>
+            <div class="grid-item item-pe gdp-tier-5">PE <span class="item-data">$9.9B</span></div>
+    
+            <!-- Row 3 -->
+            <div class="grid-item item-ns gdp-tier-4">NS <span class="item-data">$60B</span></div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><span class="legend-color" style="background-color: #E1BEE7;"></span> < $10B</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #BA68C8;"></span> $30-60B</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #9C27B0;"></span> ~$100B</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #7B1FA2;"></span> $400-600B</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #4A148C;"></span> > $1T</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
